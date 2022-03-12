@@ -5,9 +5,8 @@ import javax.persistence.*;
 @Entity(name="user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", unique = true)
-    private int id;
+    @Column(name = "nationalID", unique = true)
+    private int nationalID;
     @Column(name = "email")
     private String email;
     @Column(name = "name")
@@ -19,16 +18,29 @@ public class User {
     @Column(name = "City")
     private String city;
 
+
+    @ManyToOne
+    @JoinColumn(name = "id", nullable = false)
+    private VaccinationCenter center;
+
     public User (){
     }
 
     public User(User user){
-        this.id = user.id;
         this.email = user.email;
         this.name = user.name;
         this.password = user.password;
         this.age = user.age;
         this.city = user.city;
+        this.nationalID = user.nationalID;
+    }
+
+    public int getNationalID() {
+        return nationalID;
+    }
+
+    public void setNationalID(int nationalID) {
+        this.nationalID = nationalID;
     }
 
     public void setCity(String city){
@@ -45,14 +57,6 @@ public class User {
 
     public int getAge() {
         return age;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getName() {

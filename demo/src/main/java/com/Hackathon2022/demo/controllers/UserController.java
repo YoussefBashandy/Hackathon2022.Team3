@@ -12,8 +12,8 @@ public class UserController {
     IUserServices userServices;
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public Boolean login(@RequestParam String email, @RequestParam String pass) {
-        return userServices.findUser(email, pass);
+    public Boolean login(@RequestParam int id, @RequestParam String pass) {
+        return userServices.findUser(id, pass);
     }
 
     @PostMapping(value = "/register")
