@@ -14,7 +14,7 @@ public class UserServices implements IUserServices {
 
     @Override
     public Boolean findUser(@RequestParam int id,@RequestParam String password) {
-        User user = userDA.findByEmail(id);
+        User user = userDA.findByNationalID(id);
         if(user == null){
             return false;
         }else {
