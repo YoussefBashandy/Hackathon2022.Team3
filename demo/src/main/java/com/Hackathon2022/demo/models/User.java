@@ -2,9 +2,15 @@ package com.Hackathon2022.demo.models;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity(name="user")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
+    @Column(name = "id", unique = true)
+    private int id;
     @Column(name = "nationalID", unique = true)
     private int nationalID;
     @Column(name = "email")
@@ -17,11 +23,15 @@ public class User {
     private int age;
     @Column(name = "City")
     private String city;
+    @Column(name = "sex")
+    private String sex;
+    @Column(name = "phone")
+    private String phone;
 
 
-    @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
-    private VaccinationCenter center;
+   // @ManyToOne
+   // @JoinColumn(name = "id", nullable = false)
+    //private VaccinationCenter center;
 
     public User (){
     }
@@ -33,6 +43,17 @@ public class User {
         this.age = user.age;
         this.city = user.city;
         this.nationalID = user.nationalID;
+        this.age=user.age;
+        this.id = user.id;
+        this.phone = user.phone;
+    }
+
+    public int getID() {
+        return id;
+    }
+
+    public void setID(int ID) {
+        this.id = ID;
     }
 
     public int getNationalID() {
@@ -81,5 +102,21 @@ public class User {
 
     public String getPassword(){
         return password;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhone(){
+        return phone;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getSex(){
+        return sex;
     }
 }

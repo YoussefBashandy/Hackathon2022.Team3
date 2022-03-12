@@ -1,7 +1,7 @@
 package com.Hackathon2022.demo.models;
 
 import javax.persistence.*;
-import java.util.Set;
+//import java.util.Set;
 
 @Entity(name = "center")
 public class VaccinationCenter {
@@ -16,8 +16,8 @@ public class VaccinationCenter {
     @Column(name = "capacity")
     private int capacity;
 
-    @OneToMany(mappedBy = "center")
-    private Set<User> users;
+    //@OneToMany(mappedBy = "center")
+    //private Set<User> users;
 
     public int getId() {
         return id;

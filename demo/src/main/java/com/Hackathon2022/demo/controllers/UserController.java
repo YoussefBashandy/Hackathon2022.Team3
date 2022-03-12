@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -16,7 +17,7 @@ public class UserController {
         return userServices.findUser(id, pass);
     }
 
-    @PostMapping(value = "/register")
+    @PostMapping("/SignUp")
     public Boolean register(@RequestBody User user) {
         return userServices.saveUser(user);
     }
