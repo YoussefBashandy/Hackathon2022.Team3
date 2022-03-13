@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.sql.Time;
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name="ride")
 public class Ride {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,8 +27,8 @@ public class Ride {
     @JoinColumn(name = "center_id", nullable = true)
     private VaccinationCenter center;
 
-    @OneToOne(mappedBy = "ride")
-    private result result;
+    //@OneToOne(mappedBy = "ride")
+   // private result result;
 
     public VaccinationCenter getCenter() {
         return center;

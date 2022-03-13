@@ -7,12 +7,10 @@ import java.util.UUID;
 
 import com.Hackathon2022.demo.data.IApplicantsDA;
 import com.Hackathon2022.demo.data.ICenterDA;
-import com.Hackathon2022.demo.data.IResultDA;
 import com.Hackathon2022.demo.models.Applicants;
 import com.Hackathon2022.demo.models.Ride;
 import com.Hackathon2022.demo.models.User;
 import com.Hackathon2022.demo.models.VaccinationCenter;
-import com.Hackathon2022.demo.models.result;
 import com.Hackathon2022.demo.services.IUserServices;
 
 import net.bytebuddy.implementation.auxiliary.AuxiliaryType;
@@ -29,8 +27,7 @@ public class UserController {
     IApplicantsDA applicantsDA;
     @Autowired
     ICenterDA centerDA;
-    @Autowired
-    IResultDA resultDA;
+
 
     @RequestMapping(value = "/SignIn",method = RequestMethod.POST)
     public Boolean login(@RequestBody Map<String,String> object ) {
@@ -64,8 +61,8 @@ public class UserController {
         String timeTo = object.get("to");
         LocalDateTime to = LocalDateTime.parse(timeTo, formatter);
 
-        result result = new result();
-        if(to.isBefore(from)) {
+       // result result = new result();
+       // if(to.isBefore(from)) {
             System.out.println("Your vaccination center is " + user.getCenter().getName());
             System.out.println("You can go take your vaccine from: " + from.toString() + "to: " + to.toString());
 
@@ -77,7 +74,7 @@ public class UserController {
                 System.out.println("You choose not to take a ride");
             }
 
-            String pharmCoupon = object.get("coupon");
+            String pharmCoupon = object.get("pharmacy");
             String uniqueID = "";
             if (pharmCoupon.equals("true")) {
                 uniqueID = UUID.randomUUID().toString();
@@ -92,8 +89,9 @@ public class UserController {
             applicant.setCenter(user.getCenter());
 
             applicantsDA.save(applicant);
-
-            result.setRideDetails(rideDetails);
+     //   }
+/*
+           // result.setRideDetails(rideDetails);
             result.setCenterName(user.getCenter().getName());
             result.setFrom(from);
             result.setTo(to);
@@ -102,11 +100,12 @@ public class UserController {
         }
         resultDA.save(result);
     }
-
+/*
     @RequestMapping(value = "/result", method = RequestMethod.POST)
     public result getResult(int id){
         result result = resultDA.findByNationalID(id);
         return result;
     }
-
+*/
+}
 }

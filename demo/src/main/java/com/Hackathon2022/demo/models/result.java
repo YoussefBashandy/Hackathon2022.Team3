@@ -1,16 +1,21 @@
-package com.Hackathon2022.demo.models;
+/*package com.Hackathon2022.demo.models;
 
 import com.Hackathon2022.demo.models.Ride;
 import com.Hackathon2022.demo.models.VaccinationCenter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
+@Entity(name="result")
 public class result {
 
     @Id
-    @Column(name = "nationalID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
+    @Column(name = "id", unique = true)
+    private int id;
+    @Column(name = "nationalID", unique = true)
     private int nationalID;
     @Column(name = "centerName")
     private String centerName;
@@ -21,11 +26,19 @@ public class result {
     @Column(name = "promocode")
     private String promoCode;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ride_id", referencedColumnName = "id")
-    private Ride rideDetails;
+   // @OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "ride_id", referencedColumnName = "id")
+    //private Ride rideDetails;
 
 
+    public int getID() {
+        return id;
+    }
+
+    public void setID(int ID) {
+        this.id = ID;
+    }
+    
     public int getNationalID() {
         return nationalID;
     }
@@ -41,7 +54,7 @@ public class result {
     public void setCenterName(String centerName) {
         this.centerName = centerName;
     }
-
+/*
     public Ride getRideDetails() {
         return rideDetails;
     }
@@ -49,7 +62,8 @@ public class result {
     public void setRideDetails(Ride rideDetails) {
         this.rideDetails = rideDetails;
     }
-
+*/
+/*
     public LocalDateTime getFrom() {
         return from;
     }
@@ -74,3 +88,4 @@ public class result {
         this.promoCode = promoCode;
     }
 }
+*/
