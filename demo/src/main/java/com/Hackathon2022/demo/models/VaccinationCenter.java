@@ -1,6 +1,7 @@
 package com.Hackathon2022.demo.models;
 
 import javax.persistence.*;
+import java.util.Set;
 //import java.util.Set;
 
 @Entity(name = "center")
@@ -16,8 +17,30 @@ public class VaccinationCenter {
     @Column(name = "capacity")
     private int capacity;
 
-    //@OneToMany(mappedBy = "center")
-    //private Set<User> users;
+    @OneToMany(mappedBy = "center")
+    private Set<User> users;
+
+    @OneToMany(mappedBy = "center")
+    private Set<Ride> rides;
+
+    @OneToMany(mappedBy = "center")
+    private Set<Applicants> applicants;
+
+    public Set<Ride> getRides() {
+        return rides;
+    }
+
+    public void setRides(Set<Ride> rides) {
+        this.rides = rides;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 
     public int getId() {
         return id;

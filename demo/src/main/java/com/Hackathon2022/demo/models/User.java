@@ -29,9 +29,9 @@ public class User {
     private String phone;
 
 
-   // @ManyToOne
-   // @JoinColumn(name = "id", nullable = false)
-    //private VaccinationCenter center;
+    @ManyToOne
+    @JoinColumn(name = "id", nullable = true)
+    private VaccinationCenter center;
 
     public User (){
     }
@@ -46,6 +46,14 @@ public class User {
         this.age=user.age;
         this.id = user.id;
         this.phone = user.phone;
+    }
+
+    public VaccinationCenter getCenter() {
+        return center;
+    }
+
+    public void setCenter(VaccinationCenter center) {
+        this.center = center;
     }
 
     public int getID() {
