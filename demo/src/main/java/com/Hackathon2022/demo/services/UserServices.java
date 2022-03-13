@@ -1,6 +1,5 @@
 package com.Hackathon2022.demo.services;
 import com.Hackathon2022.demo.UberAPI;
-import com.Hackathon2022.demo.data.IApplicantsDA;
 import com.Hackathon2022.demo.data.IRideDA;
 import com.Hackathon2022.demo.data.IUserDA;
 import com.Hackathon2022.demo.models.Ride;
@@ -40,7 +39,7 @@ public class UserServices implements IUserServices {
     }
 
     @Override
-    public void bookARide(User user, LocalDateTime rideTime){
+    public Ride bookARide(User user, LocalDateTime rideTime){
         UberAPI uber = new UberAPI();
         Ride ride = uber.confirmRide(user, rideTime);
         rideDA.save(ride);
@@ -51,8 +50,11 @@ public class UserServices implements IUserServices {
             System.out.println("Car Number:" + ride.getCarNumber());
             System.out.println("Car brand:" + ride.getCarBrand());
             System.out.println("Time:" + ride.getRideTime());
+
+            return ride;
         }else{
             System.out.println("We are facing a problem right now booking your ride. Please try again later");
+            return null;
         }
     }
 

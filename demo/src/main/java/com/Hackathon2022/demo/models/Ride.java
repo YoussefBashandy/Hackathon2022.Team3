@@ -27,6 +27,9 @@ public class Ride {
     @JoinColumn(name = "center_id", nullable = true)
     private VaccinationCenter center;
 
+    @OneToOne(mappedBy = "ride")
+    private result result;
+
     public VaccinationCenter getCenter() {
         return center;
     }
