@@ -23,6 +23,7 @@ public class UserController {
 
     @Autowired
     IUserServices userServices;
+    @Autowired
     IApplicantsDA applicantsDA;
 
     @RequestMapping(value = "/SignIn",method = RequestMethod.POST)
@@ -40,15 +41,16 @@ public class UserController {
         return userServices.saveUser(user);
     }
 
-    @RequestMapping(value = "/result", method = RequestMethod.POST)
+    @RequestMapping(value = "/apply", method = RequestMethod.POST)
     public void confirmation(@RequestBody Map<String, String> object){
+        System.out.println(object.toString());
         String strID = object.get("id");
         int id = Integer.parseInt(strID);
 
         User user = userServices.getUser(id);
 
         String timeFrom = object.get("from");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime from = LocalDateTime.parse(timeFrom, formatter);
 
         String timeTo = object.get("to");
@@ -64,12 +66,12 @@ public class UserController {
             System.out.println("You choose not to take a ride");
         }
 
-        String pharmCoupon = object.get("coupon");
+        String pharmCoupon = object.get("pharmacy");
         if(pharmCoupon.equals("true")){
             String uniqueID = UUID.randomUUID().toString();
             System.out.println("You can use this coupon at El-Azaby Pharmacies: " + uniqueID);
         }
-
+        System.out.println(id+"  "+timeFrom+"  "+timeTo+"  "+ride+"  "+pharmCoupon);
         Applicants applicant = new Applicants();
         applicant.setNationalId(user.getNationalID());
         applicant.setApplicantName(user.getName());

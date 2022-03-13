@@ -2,13 +2,17 @@ package com.Hackathon2022.demo.models;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "applicants")
 public class Applicants {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @JsonIgnore
+    @Column(name = "id", unique = true)
+    private int id;
+    @Column(name = "nationalID", unique = true)
     private int nationalId;
     @Column(name = "applicantname")
     private String applicantName;
@@ -18,9 +22,17 @@ public class Applicants {
     private LocalDateTime to;
 
     @ManyToOne
-    @JoinColumn(name = "id", nullable = true)
+    @JoinColumn(name = "center_id", nullable = true)
     private VaccinationCenter center;
 
+
+    public int getID() {
+        return id;
+    }
+
+    public void setID(int ID) {
+        this.id = ID;
+    }
 
     public int getNationalId() {
         return nationalId;

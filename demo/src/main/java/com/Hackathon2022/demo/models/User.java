@@ -30,7 +30,7 @@ public class User {
 
 
     @ManyToOne
-    @JoinColumn(name = "id", nullable = true)
+    @JoinColumn(name = "center_id", nullable = true)
     private VaccinationCenter center;
 
     public User (){
