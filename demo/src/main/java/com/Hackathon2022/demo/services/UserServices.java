@@ -16,6 +16,7 @@ public class UserServices implements IUserServices {
 
     @Autowired
     IUserDA userDA;
+    @Autowired
     IRideDA rideDA;
 
     @Override
